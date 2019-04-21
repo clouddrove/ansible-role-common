@@ -1,0 +1,10 @@
+---
+
+- import_tasks: debian.yml
+- import_tasks: zsh.yml
+  vars:
+    user: ubuntu
+- import_tasks: zsh.yml
+  vars:
+    user: root
+    home_dir: '/'
