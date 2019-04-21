@@ -59,7 +59,6 @@
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
 
-
 - name: symlink zshrc
   file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
@@ -67,7 +66,5 @@
     state: link
     mode: 0777
 
-
 - name: set zsh as default shell
   shell: "chsh -s $(which zsh) {{ user }}"
-
