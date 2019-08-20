@@ -1,2 +1,3 @@
 ---
 # defaults file for ansible-role-commomn
+zsh_theme: steeef
