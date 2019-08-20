@@ -43,12 +43,6 @@
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
 
-- name: deploy .aliases
-  template:
-    src: config/aliases.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.aliases"
-    mode: 0777
-
 - name: deploy .bash_profile
   template:
     src: config/bash_profile.in
