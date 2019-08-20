@@ -4,7 +4,7 @@
 - name: install git and zsh debian
   apt:
     name: ['git', 'zsh']
-    state: latest
+    state: present
     update_cache: yes
     cache_valid_time: 5400
 
@@ -12,6 +12,7 @@
   git:
     depth: 1
     repo: "{{ item.name }}"
+    version: master
     dest: /usr/local/share/{{ item.dir }}
   with_items:
     - name: https://github.com/robbyrussell/oh-my-zsh
@@ -68,3 +69,4 @@
 
 - name: set zsh as default shell
   shell: "chsh -s $(which zsh) {{ user }}"
+  changed_when: true
