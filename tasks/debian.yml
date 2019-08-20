@@ -2,7 +2,7 @@
 
 - name: dpkg configure
   command: dpkg --configure -a
-  changed_when: true
+  changed_when: false
 
 - name: install system packages and utils
   apt:
@@ -15,3 +15,4 @@
     update_cache: true
     cache_valid_time: 5400
     allow_unauthenticated: true
+    changed_when: false
