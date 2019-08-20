@@ -6,10 +6,12 @@
 
 - name: install system packages and utils
   apt:
-    name: ['ntp', 'openssl', 'git', 'git-core', 'golang', 'goaccess', 'htop', 'rsyslog', 'zip', 'vim', 'vim-common',
-    'curl', 'multitail', 'sysstat', 'figlet', 'python-pip', 'apt-transport-https', 'libfontconfig','mysql-clinet',
-    'libjson-xs-perl', 'telnet', 'wget', 'python-mysqldb']
+    name: ['ntp', 'openssl', 'git', 'git-core', 'golang', 'goaccess',
+           'htop', 'rsyslog', 'zip', 'vim', 'vim-common', 'curl',
+           'multitail', 'sysstat', 'figlet', 'python-pip',
+           'libfontconfig','mysql-clinet','libjson-xs-perl',
+           'telnet', 'wget', 'apt-transport-https', 'python-mysqldb']
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 5400
     allow_unauthenticated: yes
