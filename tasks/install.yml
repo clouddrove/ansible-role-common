@@ -15,4 +15,3 @@
     update_cache: true
     cache_valid_time: 5400
     allow_unauthenticated: true
-    changed_when: false

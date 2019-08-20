@@ -1,6 +1,6 @@
 ---
 
-- import_tasks: debian.yml
+- import_tasks: install.yml
 - import_tasks: zsh.yml
   vars:
     user: ubuntu
