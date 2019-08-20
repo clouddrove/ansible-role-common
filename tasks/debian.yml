@@ -9,9 +9,9 @@
     name: ['ntp', 'openssl', 'git', 'git-core', 'golang', 'goaccess',
            'htop', 'rsyslog', 'zip', 'vim', 'vim-common', 'curl',
            'multitail', 'sysstat', 'figlet', 'python-pip',
-           'libfontconfig','mysql-clinet','libjson-xs-perl',
+           'libfontconfig', 'mysql-clinet', 'libjson-xs-perl',
            'telnet', 'wget', 'apt-transport-https', 'python-mysqldb']
     state: present
     update_cache: true
     cache_valid_time: 5400
-    allow_unauthenticated: yes
+    allow_unauthenticated: true
