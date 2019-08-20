@@ -32,25 +32,25 @@
 
 - name: deploy .zshrc
   template:
-    src: files/zshrc.in
+    src: config/zshrc.in
     dest: /usr/local/share/oh-my-zsh/conf/zshrc
     mode: 0777
 
 - name: deploy .extra
   template:
-    src: files/extra.in
+    src: config/extra.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
 
 - name: deploy .aliases
   template:
-    src: files/aliases.in
+    src: config/aliases.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.aliases"
     mode: 0777
 
 - name: deploy .bash_profile
   template:
-    src: files/bash_profile.in
+    src: config/bash_profile.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
 
