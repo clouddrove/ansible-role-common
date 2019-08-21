@@ -6,12 +6,24 @@
 
 - name: install system packages and utils
   apt:
-    name: ['ntp', 'openssl', 'git', 'git-core', 'golang', 'goaccess',
-           'htop', 'rsyslog', 'zip', 'vim', 'vim-common', 'curl',
-           'multitail', 'sysstat', 'figlet', 'python-pip',
-           'libfontconfig', 'libjson-xs-perl', 'apt-transport-https',
-           'telnet', 'wget']
-    state: present
+    pkg: "{{ item }}"
+    state: "{{ state }}"
     update_cache: true
     cache_valid_time: 5400
-    allow_unauthenticated: true
+  changed_when: false
+  with_items:
+    - ntp
+    - openssl
+    - git
+    - git-core
+    - htop
+    - wget
+    - telnet
+    - figlet
+    - python-pip
+    - zip
+    - vim
+    - vim-common
+    - curl
+    - rsyslog
+    - libjson-xs-perl
