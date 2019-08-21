@@ -10,7 +10,7 @@
            'htop', 'rsyslog', 'zip', 'vim', 'vim-common', 'curl',
            'multitail', 'sysstat', 'figlet', 'python-pip',
            'libfontconfig', 'libjson-xs-perl', 'apt-transport-https',
-           'telnet', 'wget', 'python-mysqldb']
+           'telnet', 'wget']
     state: present
     update_cache: true
     cache_valid_time: 5400
