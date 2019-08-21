@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: clouddrove
-  description: Install common packages
+  description: Ansible role install common packages.
   company: "CloudDrove, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
@@ -18,5 +18,10 @@ galaxy_info:
         - xenial
         - bionic
   galaxy_tags:
-    - system
     - server
+    - common
+    - ubuntu
+    - amazone
+    - linux
+    - apt
+    - zsh

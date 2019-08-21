@@ -1,9 +1,11 @@
 ---
 
 - import_tasks: install.yml
+
 - import_tasks: zsh.yml
   vars:
     user: ubuntu
+
 - import_tasks: zsh.yml
   vars:
     user: root
