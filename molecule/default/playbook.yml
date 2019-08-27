@@ -1,6 +1,0 @@
----
-- name: Converge
-  hosts: localhost
-  become: true
-  roles:
-    - role: ansible-role-common
