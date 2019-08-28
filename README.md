@@ -96,7 +96,7 @@ Followiing things includes in this role:
       remote_user: ubuntu
       become: true
       roles:
-        - ansible-role-common
+        - clouddrove.ansible_role_common
 ```
 Example Inventory file:
 ```
@@ -114,7 +114,7 @@ Example Inventory file:
 ## Installation
 
 ```console
-     $ ansible-galaxy install clouddrove.ansible_role_docker_php
+     $ ansible-galaxy install clouddrove.ansible_role_common
 ```
 
 
