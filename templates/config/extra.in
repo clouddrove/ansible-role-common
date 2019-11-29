@@ -13,17 +13,16 @@ UPTIME=`printf "%d days, %02dh%02dm%02ds" "$days" "$hours" "$mins" "$secs"`
 read one five fifteen rest < /proc/loadavg
  
 echo "$(tput setaf 033)   
-                                        $(tput setaf 033) Servername.........:$(tput setaf 244) `perl -e "print uc('$TEXT');"`$(tput setaf 033)
-  ___  _      ___   _   _  ___          $(tput setaf 033) OS.................:$(tput setaf 244) `uname -srmo`$(tput setaf 033)
- / __|| |    / _ \ | | | ||   \         $(tput setaf 033) Uptime.............:$(tput setaf 244) ${UPTIME}$(tput setaf 033)
-| (__ | |__ | (_) || |_| || |) |        $(tput setaf 033) Memory.............:$(tput setaf 244) `cat /proc/meminfo | grep MemFree | awk {'print $2'}`kB (Free) / `cat /proc/meminfo | grep MemTotal | awk {'print $2'}`kB (Total)$(tput setaf 033)
- \___||____| \___/  \___/ |___/         $(tput setaf 033) HDD................:$(tput setaf 244) `df -h --total | grep total | awk '{print $4}'` (Free) / `df -h --total | grep total | awk '{print $2}'` (Total)
-  ___   ___   ___  __   __ ___          $(tput setaf 033) Load Averages......:$(tput setaf 244) ${one}, ${five}, ${fifteen} (1, 5, 15 min)
- |   \ | _ \ / _ \ \ \ / /| __|         $(tput setaf 033) Running Processes..:$(tput setaf 244) `ps ax | wc -l | tr -d " "`
- | |) ||   /| (_) | \ V / | _|          $(tput setaf 033) Internal IP........:$(tput setaf 244) `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
- |___/ |_|_\ \___/   \_/  |___|         $(tput setaf 033) External IP........:$(tput setaf 244) `wget -q -O - http://icanhazip.com/ | tail`
-                                        $(tput setaf 033) Email..............:$(tput setaf 244) hello@clouddrove.com
-                                        $(tput setaf 033) Github.............:$(tput setaf 244) https://github.com/clouddrove
+  ___  _      ___   _   _  ___      $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) HostName...........:$(tput setaf 244) $(tput bold)`perl -e "print uc('$TEXT');"`$(tput sgr0)$(tput setaf 033)
+ / __|| |    / _ \ | | | ||   \     $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) OS.................:$(tput setaf 244) `uname -srmo`$(tput setaf 033)
+| (__ | |__ | (_) || |_| || |) |    $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) Uptime.............:$(tput setaf 244) ${UPTIME}$(tput setaf 033)
+ \___||____| \___/  \___/ |___/     $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) Memory.............:$(tput setaf 244) `cat /proc/meminfo | grep MemFree | awk {'print $2/1000000'}`G (Free) / `cat /proc/meminfo | grep MemTotal | awk {'print $2/1000000'}`G (Total)
+  ___   ___   ___  __   __ ___      $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) HDD................:$(tput setaf 244) `df -h --total | grep total | awk '{print $4}'` (Free) / `df -h --total | grep total | awk '{print $2}'` (Total)
+ |   \ | _ \ / _ \ \ \ / /| __|     $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) Load Averages......:$(tput setaf 244) ${one}, ${five}, ${fifteen} (1, 5, 15 min)
+ | |) ||   /| (_) | \ V / | _|      $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) Running Processes..:$(tput setaf 244) `ps ax | wc -l | tr -d " "`
+ |___/ |_|_\ \___/   \_/  |___|     $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) Internal IP........:$(tput setaf 244) `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
+                                    $(tput setaf 033)|$(tput setaf 244)|    $(tput setaf 033) External IP........:$(tput setaf 244) `wget -q -O - http://icanhazip.com/ | tail`
+
 $(tput sgr0)"
 
 # UTF-8 Compass generation
