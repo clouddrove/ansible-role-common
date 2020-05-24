@@ -8,12 +8,11 @@
   apt:
     pkg: ['ntp', 'openssl', 'git', 'telnet', 'figlet', 'git-core', 'htop', 'wget', 'python-pip',
           'vim', 'zip', 'vim-common', 'curl', 'rsyslog', 'libjson-xs-perl']
+    state: "{{ state }}"
 - name: Install AWS CLI
   pip:
     name: awscli
     state: latest
-
-    state: "{{ state }}"
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
