@@ -12,7 +12,7 @@
 - name: Install AWS CLI
   pip:
     name: awscli
-    state: latest
+    state: present
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
