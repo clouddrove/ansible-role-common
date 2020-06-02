@@ -1,11 +1,8 @@
 ---
-- name: Install AWS CLI
-  pip:
-    name: awscli
 
 - name: install python packages
-  pip:
+  apt:
     name:
       - awscli
-      - iotop
+      -  iotop
     state: present
