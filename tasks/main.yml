@@ -1,7 +1,8 @@
 ---
 
 - import_tasks: install.yml
-
+- import_tasks: aws.yml
+  when: aws
 - import_tasks: zsh.yml
   vars:
     user: ubuntu

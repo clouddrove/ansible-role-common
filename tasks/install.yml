@@ -12,9 +12,3 @@
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
-
-- name: install python packages
-  pip:
-    name:
-      - awscli
-      - iotop
