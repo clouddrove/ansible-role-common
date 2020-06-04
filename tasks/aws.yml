@@ -1,8 +1,8 @@
 ---
 
 - name: install python packages
-  apt :
-    name :
+  apt:
+    name:
       - awscli
       - iotop
-    state : present
+    state: present
