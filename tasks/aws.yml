@@ -4,5 +4,5 @@
   apt:
     name:
       - awscli
-      -  iotop
+      - iotop
     state: present
