@@ -3,3 +3,10 @@
 zsh_theme: steeef
 state: present
 aws: true
+
+
+# DevOps tools
+
+terraform_version: ""
+packer_versoin: ""
+kubectl_version: ""
