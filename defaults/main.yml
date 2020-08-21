@@ -6,7 +6,7 @@ aws: true
 
 
 # DevOps tools
-
+devops: false
 terraform_version: ""
 packer_versoin: ""
 kubectl_version: ""
