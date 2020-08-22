@@ -17,11 +17,11 @@
 - name: Download and setup kubectl binary
   get_url:
     url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
-    dest: "/ur/local/bin/kubectl"
+    dest: "/usr/local/bin/kubectl"
    
 - name: Give permission to kubectl
   file:
-    path: "/ur/local/bin/kubectl"
+    path: "/usr/local/bin/kubectl"
     owner: root
     group: root
     mode: '0777'
