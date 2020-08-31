@@ -18,7 +18,7 @@
   get_url:
     url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
     dest: "/usr/local/bin/kubectl"
-   
+    
 - name: Give permission to kubectl
   file:
     path: "/usr/local/bin/kubectl"
