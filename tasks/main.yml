@@ -11,3 +11,6 @@
   vars:
     user: root
     home_dir: '/'
+
+- import_tasks: devops.yml
+  when: devops == "true"

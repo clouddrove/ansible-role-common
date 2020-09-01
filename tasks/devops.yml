@@ -1,0 +1,29 @@
+---
+
+- name: Download and Install Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
+    dest: "/usr/local/bin"
+    remote_src: true
+    creates: "/usr/local/bin/terraform"
+    mode: '0777'
+
+- name: Download and install Packer
+  unarchive:
+    src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
+    dest: "/usr/local/bin"
+    remote_src: true
+    creates: "/usr/local/bin/packer"
+    mode: '0777'
+
+- name: Download and setup kubectl binary
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
+    dest: "/usr/local/bin/kubectl"
+
+- name: Give permission to kubectl
+  file:
+    path: "/usr/local/bin/kubectl"
+    owner: root
+    group: root
+    mode: '0777'
