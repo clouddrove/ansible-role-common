@@ -6,6 +6,7 @@
     dest: "/usr/local/bin"
     remote_src: true
     creates: "/usr/local/bin/terraform"
+    mode: '0777'
 
 - name: Download and install Packer
   unarchive:
@@ -13,6 +14,7 @@
     dest: "/usr/local/bin"
     remote_src: true
     creates: "/usr/local/bin/packer"
+    mode: '0777'
 
 - name: Download and setup kubectl binary
   get_url:
