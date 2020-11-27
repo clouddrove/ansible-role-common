@@ -1,0 +1,61 @@
+---
+name: Ansible molecule
+on:
+  pull_request:
+    branches:
+      - master
+    types: [labeled]
+jobs:
+
+  test:
+    name: Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - ubuntu
+          - centos
+          - amazonlinux
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.7.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        if: ${{ github.event.label.name == 'molecule' }}
+        run: |
+           sudo apt-get update
+           sudo apt-get install ansible -y
+           pip3 install ansible molecule[docker] docker
+      
+      - name: 'Run molecule on the ${{ matrix.node }}'
+        if: ${{ github.event.label.name == 'molecule' }}
+        run: |
+          molecule test --scenario-name=${{ matrix.node }} > file.txt
+          echo 'output<<EOF' >> $GITHUB_ENV
+          cat file.txt >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+        id: ls
+        
+      - name: 'PR Comment'
+        uses: actions-ecosystem/action-create-comment@v1
+        with:
+          github_token: ${{ secrets.GITHUB }}
+          body: |
+            ${{ env.output }}
+
+      - name: 'Slack Notification'
+        uses: clouddrove/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          fields: repo,author
+          author_name: 'CloudDrove'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        if: always()

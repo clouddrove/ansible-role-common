@@ -1,0 +1,41 @@
+---
+
+- name: setup group on ubuntu
+  group:
+    name: "{{ ubuntu_group }}"
+    system: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: setup user on ubuntu
+  user:
+    name: "{{ ubuntu_user }}"
+    system: true
+    group: "{{ ubuntu_group }}"
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: setup group on centos
+  group:
+    name: "{{ centos_group }}"
+    system: true
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+
+- name: setup user on centos
+  user:
+    name: "{{ centos_user }}"
+    system: true
+    group: "{{ centos_group }}"
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+
+- name: setup group on Amazon
+  group:
+    name: "{{ amazon_group }}"
+    system: true
+  when: (ansible_facts['distribution'] == "Amazon")
+
+- name: setup user on Amazon
+  user:
+    name: "{{ amazon_user }}"
+    system: true
+    group: "{{ amazon_group }}"
+  when: (ansible_facts['distribution'] == "Amazon")
+
