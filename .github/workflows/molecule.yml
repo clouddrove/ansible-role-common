@@ -8,41 +8,36 @@ on:
 jobs:
 
   test:
-    name: Lint
+    name: Molecule
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node:
-          - ubuntu
-          - centos
-          - amazonlinux
+          - ubuntu1804
+          - centos7
+          - amazonlinux2
 
     steps:
+      - name: Install test dependencies.
+        if: ${{ github.event.label.name == 'molecule' }}
+      
       - name: Check out the codebase.
         uses: actions/checkout@v2
 
-      - name: Set up Python 3.7.
+      - name: Set up Python 3.
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
+      - name: Run Molecule tests
         if: ${{ github.event.label.name == 'molecule' }}
-        run: |
-           sudo apt-get update
-           sudo apt-get install ansible -y
-           pip3 install ansible molecule[docker] docker
+        uses: clouddrove/molecule-action@master
+        with:
+          molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.distro }}
       
-      - name: 'Run molecule on the ${{ matrix.node }}'
-        if: ${{ github.event.label.name == 'molecule' }}
-        run: |
-          molecule test --scenario-name=${{ matrix.node }} > file.txt
-          echo 'output<<EOF' >> $GITHUB_ENV
-          cat file.txt >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-        id: ls
-        
       - name: 'PR Comment'
+        if: ${{ github.event.label.name == 'molecule' }}
         uses: actions-ecosystem/action-create-comment@v1
         with:
           github_token: ${{ secrets.GITHUB }}
