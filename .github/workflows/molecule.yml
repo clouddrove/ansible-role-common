@@ -18,9 +18,6 @@ jobs:
           - amazonlinux2
 
     steps:
-      - name: Install test dependencies.
-        if: ${{ github.event.label.name == 'molecule' }}
-
       - name: Check out the codebase.
         uses: actions/checkout@v2
 
@@ -52,5 +49,5 @@ jobs:
           author_name: 'CloudDrove'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ANSIBLE }}
         if: always()
