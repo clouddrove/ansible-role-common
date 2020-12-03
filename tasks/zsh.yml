@@ -39,7 +39,7 @@
     - "/usr/local/share/oh-my-zsh/conf/"
     - "/usr/local/share/oh-my-zsh/cache/"
 
-- name: deploy .zshrc 
+- name: deploy .zshrc
   template:
     src: config/zshrc.in
     dest: /usr/local/share/oh-my-zsh/conf/zshrc

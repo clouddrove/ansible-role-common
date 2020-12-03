@@ -38,4 +38,3 @@
     system: true
     group: "{{ amazon_group }}"
   when: (ansible_facts['distribution'] == "Amazon")
-
