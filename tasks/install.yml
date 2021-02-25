@@ -4,11 +4,19 @@
   command: dpkg --configure -a
   changed_when: false
 
+- name: add git stable apt_repository
+  apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+
 - name: install system packages and utils
   apt:
     pkg: ['ntp', 'openssl', 'git', 'telnet', 'figlet', 'git-core', 'htop', 'wget', 'python3-pip',
-          'zip', 'vim', 'vim-common', 'curl', 'rsyslog', 'libjson-xs-perl']
+                   'zip', 'vim', 'vim-common', 'curl', 'rsyslog', 'libjson-xs-perl']
     state: "{{ state }}"
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
+
+- name: Install git latest version
+  shell: apt install git -y
