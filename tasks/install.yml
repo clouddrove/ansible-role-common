@@ -1,15 +1,17 @@
 ---
 
-- name: dpkg configure
+- name: dpkg configure on ubuntu
   command: dpkg --configure -a
   changed_when: false
+  when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: add git stable apt_repository
   apt_repository:
     repo: ppa:git-core/ppa
     state: present
+  when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: install system packages and utils
+- name: install system packages and utils on ubuntu
   apt:
     pkg: ['ntp', 'openssl', 'git', 'telnet', 'figlet', 'git-core', 'htop', 'wget', 'python3-pip',
                    'zip', 'vim', 'vim-common', 'curl', 'rsyslog', 'libjson-xs-perl']
@@ -17,6 +19,40 @@
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
+  when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: Install git latest version
   shell: apt install git -y
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: install epel-release on centos
+  command: yum install epel-release -y
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+
+- name: install epel-release on amazonlinux
+  command: amazon-linux-extras install epel -y
+  when: (ansible_facts['distribution'] == "Amazon")
+
+- name: install system packages and utils on centos
+  yum:
+    name: [ 'which', 'git', 'telnet', 'git-core',  'wget', 'python3-pip', 'zip', 'vim', 'vim-common', 'curl',  'ntp', 'openssl', 'rsyslog', 'htop', 'perl-JSON-XS', 'figlet' ]
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or (ansible_facts['distribution'] == "Amazon")
+
+- name: install util-linux-use on centos
+  yum:
+    name: yum-utils
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+
+- name: install util-linux-use on amazon
+  yum:
+    name: util-linux-user
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+  when: (ansible_facts['distribution'] == "Amazon")
