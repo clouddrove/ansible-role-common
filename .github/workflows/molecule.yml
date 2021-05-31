@@ -1,6 +1,7 @@
 ---
 name: Ansible molecule
 on:
+  truthy: true
   pull_request:
     branches:
       - master

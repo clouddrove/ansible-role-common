@@ -5,7 +5,7 @@
   when: aws
 - import_tasks: zsh.yml
   vars:
-    user: ubuntu
+    user: drax
 
 - import_tasks: zsh.yml
   vars:
