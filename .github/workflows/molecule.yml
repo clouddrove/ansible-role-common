@@ -2,15 +2,14 @@
 name: Ansible molecule
 on:
 truthy:
-    truthy:
-    level: error
-    allowed-values:
-      - 'yes'
-      - 'no'
-      - 'true'
-      - 'false'
-      - 'True'
-      - 'False'
+  level: error
+  allowed-values:
+    - 'yes'
+    - 'no'
+    - 'true'
+    - 'false'
+    - 'True'
+    - 'False'
   pull_request:
     branches:
       - master
