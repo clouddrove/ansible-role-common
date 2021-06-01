@@ -1,6 +1,6 @@
 ---
 name: Ansible molecule
-on:
+'on':
   pull_request:
     branches:
       - master
