@@ -25,7 +25,8 @@
   when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: install epel release on centos
-  command: yum install epel-release -y
+  yum: 
+    name: epel-release
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 
 - name: install epel-release on amazonlinux
