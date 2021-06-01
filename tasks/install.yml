@@ -35,7 +35,7 @@
 
 - name: install system packages and utils on centos
   yum:
-    name: [ 'which', 'git', 'telnet', 'git-core',  'wget', 'python3-pip', 'zip', 'vim', 'vim-common', 'curl',  'ntp', 'openssl', 'rsyslog', 'htop', 'perl-JSON-XS', 'figlet' ]
+    name: ['which', 'git', 'telnet', 'git-core',  'wget', 'python3-pip', 'zip', 'vim', 'vim-common', 'curl',  'ntp', 'openssl', 'rsyslog', 'htop', 'perl-JSON-XS', 'figlet']
     state: "{{ state }}"
     update_cache: true
   changed_when: false
