@@ -14,7 +14,8 @@
     name: zsh
     state: present
     update_cache: true
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or (ansible_facts['distribution'] == "Amazon")
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version']
+          == "7") or (ansible_facts['distribution'] == "Amazon")
 
 - name: clone oh-my-zsh repo
   git:
