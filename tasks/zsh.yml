@@ -84,27 +84,27 @@
 - name: deploy .extra on amazonlinux
   template:
     src: config/extra.in
-    dest: "/home/{{ amazon_user }}/.extra"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
 - name: deploy .bash_profile on amazonlinux
   template:
     src: config/bash_profile.in
-    dest: "/home/{{ amazon_user }}/.bash_profile"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
 - name: remove standard zshrc on amazonlinux
   file:
-    path: "/home/{{ amazon_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
 - name: symlink zshrc on amazonlinux
   file:
-    path: "/home/{{ amazon_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
     mode: 0777
@@ -112,7 +112,7 @@
   when: (ansible_facts['distribution'] == "Amazon")
 
 - name: set zsh as default shell on amazonlinux
-  shell: "chsh -s $(which zsh) {{ amazon_user }}"
+  shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 

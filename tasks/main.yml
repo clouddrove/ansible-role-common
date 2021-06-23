@@ -10,4 +10,4 @@
 - import_tasks: zsh.yml
   vars:
     user: root
-    home_dir: '/'
+    home_dir: "/"

@@ -1,5 +1,4 @@
 ---
-
 - name: dpkg configure on ubuntu
   command: dpkg --configure -a
   changed_when: false
@@ -13,8 +12,24 @@
 
 - name: install system packages and utils on ubuntu
   apt:
-    pkg: ['ntp', 'openssl', 'git', 'telnet', 'figlet', 'git-core', 'htop', 'wget', 'python3-pip',
-          'zip', 'vim', 'vim-common', 'curl', 'rsyslog', 'libjson-xs-perl']
+    pkg:
+      [
+        "ntp",
+        "openssl",
+        "git",
+        "telnet",
+        "figlet",
+        "git-core",
+        "htop",
+        "wget",
+        "python3-pip",
+        "zip",
+        "vim",
+        "vim-common",
+        "curl",
+        "rsyslog",
+        "libjson-xs-perl",
+      ]
     state: "{{ state }}"
     update_cache: true
     cache_valid_time: 5400
@@ -36,13 +51,31 @@
 
 - name: install system packages and utils on centos
   yum:
-    name: ['which', 'git', 'telnet', 'git-core', 'wget', 'python3-pip', 'zip', 'vim',
-           'vim-common', 'curl', 'ntp', 'openssl', 'rsyslog', 'htop', 'perl-JSON-XS', 'figlet']
+    name:
+      [
+        "which",
+        "git",
+        "telnet",
+        "git-core",
+        "wget",
+        "python3-pip",
+        "zip",
+        "vim",
+        "vim-common",
+        "curl",
+        "ntp",
+        "openssl",
+        "rsyslog",
+        "htop",
+        "perl-JSON-XS",
+        "figlet",
+      ]
     state: "{{ state }}"
     update_cache: true
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version']
-          == "7") or (ansible_facts['distribution'] == "Amazon")
+  when:
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version']
+    == "7") or (ansible_facts['distribution'] == "Amazon")
 
 - name: install util-linux-use on centos
   yum:
