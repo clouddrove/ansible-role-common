@@ -1,8 +1,11 @@
 ---
-- import_tasks: users.yml
-- import_tasks: install.yml
-- import_tasks: aws.yml
-  when: aws
+
+- import_tasks: install-apt-pkg.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- import_tasks: install-yum-pkg.yml
+  when: (ansible_facts['distribution'] == "CentOS" or (ansible_facts['distribution'] == "Amazon")
+
 - import_tasks: zsh.yml
   vars:
     user: ubuntu

@@ -116,7 +116,6 @@
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-
 - name: deploy .extra
   template:
     src: config/extra.in
