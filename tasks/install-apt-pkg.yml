@@ -25,6 +25,7 @@
         "vim",
         "vim-common",
         "curl",
+        "git",
         "rsyslog",
         "libjson-xs-perl",
       ]
@@ -32,9 +33,6 @@
     update_cache: true
     cache_valid_time: 5400
   changed_when: false
-
-- name: Install git latest version
-  command: apt install git -y
 
 - name: install python packages
   apt:

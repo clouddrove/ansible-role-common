@@ -12,11 +12,4 @@ terraform_version: "0.13.1"
 packer_versoin: "1.6.2"
 kubectl_version: "v1.19.0"
 
-# User
-
-ubuntu_user: ubuntu
-ubuntu_group: ubuntu
-centos_user: centos
-centos_group: centos
-amazon_user: amazon
-amazon_group: amazon
+user: 

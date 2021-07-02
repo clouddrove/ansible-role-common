@@ -55,5 +55,5 @@
     name:
       - awscli
       - iotop
-    state:  "{{ state }}"
+    state: "{{ state }}"
   when: aws
