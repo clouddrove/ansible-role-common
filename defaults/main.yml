@@ -12,4 +12,4 @@ terraform_version: "0.13.1"
 packer_versoin: "1.6.2"
 kubectl_version: "v1.19.0"
 
-user: 
+username: ubuntu

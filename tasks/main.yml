@@ -1,17 +1,16 @@
 ---
 
-- import_tasks: install-apt-pkg.yml
+- import_tasks: apt-pkg.yml
   when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
 
-- import_tasks: install-yum-pkg.yml
+- import_tasks: yum-pkg.yml
   when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
 
 - import_tasks: zsh.yml
   vars:
-    users: "{{ item.username }}"
-  with_items: "{{ users }}"
+    user: "{{ username }}"
 
 - import_tasks: zsh.yml
   vars:
-    users: root
+    user: root
     home_dir: "/"
