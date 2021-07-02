@@ -14,7 +14,7 @@
     name: zsh
     state: present
     update_cache: true
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or (ansible_facts['distribution'] == "Amazon")
+  when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
 
 - name: clone oh-my-zsh repo
   git:
@@ -50,21 +50,21 @@
     src: config/extra.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
 - name: deploy .bash_profile on Centos
   template:
     src: config/bash_profile.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
 - name: remove standard zshrc on Centos
   file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
 - name: symlink zshrc on Centos
   file:
@@ -73,24 +73,24 @@
     state: link
     mode: 0777
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
 - name: set zsh as default shell on Centos
   shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
 - name: deploy .extra on AmazonLinux
   template:
     src: config/extra.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
 - name: deploy .bash_profile on AmazonLinux
   template:
     src: config/bash_profile.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
@@ -118,23 +118,23 @@
 - name: deploy .extra on Debian
   template:
     src: config/extra.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
-  when: (ansible_facts['distribution'] == "Debian")
+  when: ansible_facts['distribution'] == "Debian"
 
 - name: deploy .bash_profile on Debian
   template:
     src: config/bash_profile.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
-  when: (ansible_facts['distribution'] == "Debian")
+  when: ansible_facts['distribution'] == "Debian"
 
-- name: remove standard zshrc on Debian
+- name: remove standard zshrc on on Debian
   file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
-  when: (ansible_facts['distribution'] == "Debian")
+  when: ansible_facts['distribution'] == "Debian"
 
 - name: symlink zshrc on Debian
   file:
@@ -143,12 +143,12 @@
     state: link
     mode: 0777
   changed_when: false
-  when: (ansible_facts['distribution'] == "Debian")
+  when: ansible_facts['distribution'] == "Debian"
 
 - name: set zsh as default shell on Debian
   shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
-  when: (ansible_facts['distribution'] == "Debian")
+  when: ansible_facts['distribution'] == "Debian"
 
 - name: deploy .extra on Ubuntu
   template:
@@ -156,8 +156,6 @@
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: ansible_facts['distribution'] == "Ubuntu"
-  tags:
-    manish
 
 - name: deploy .bash_profile on Ubuntu
   template:

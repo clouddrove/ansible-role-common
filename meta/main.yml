@@ -41,5 +41,6 @@ galaxy_info:
     - ubuntu
     - amazone
     - linux
+    - debian
     - apt
     - zsh

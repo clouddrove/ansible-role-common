@@ -23,11 +23,12 @@
         "vim",
         "vim-common",
         "curl",
-        "ntp",
+        "util-linux-user",
+        # "ntp",
         "openssl",
         "rsyslog",
         "htop",
-        "perl-JSON-XS",
+        # "perl-JSON-XS",
         "figlet",
       ]
     state: "{{ state }}"

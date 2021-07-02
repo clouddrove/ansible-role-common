@@ -10,6 +10,7 @@
   vars:
     user: "{{ username }}"
 
+
 - import_tasks: zsh.yml
   vars:
     user: root

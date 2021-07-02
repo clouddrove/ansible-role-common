@@ -3,10 +3,11 @@
   command: dpkg --configure -a
   changed_when: false
 
-- name: add git stable apt_repository
+- name: add git stable apt_repository on Ubuntu
   apt_repository:
     repo: ppa:git-core/ppa
     state: present
+  when: (ansible_facts['distribution'] == "Ubuntu")
 
 - name: install system packages and utils on ubuntu
   apt:
