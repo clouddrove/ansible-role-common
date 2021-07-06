@@ -1,7 +1,7 @@
 ---
 
 - import_tasks: apt-pkg.yml
-  when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
+  when: (ansible_facts['distribution'] == "Ubuntu")
 
 - import_tasks: yum-pkg.yml
   when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")

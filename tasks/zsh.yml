@@ -115,41 +115,6 @@
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: deploy .extra on Debian
-  template:
-    src: config/extra.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
-    mode: 0777
-  when: ansible_facts['distribution'] == "Debian"
-
-- name: deploy .bash_profile on Debian
-  template:
-    src: config/bash_profile.in
-    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
-    mode: 0777
-  when: ansible_facts['distribution'] == "Debian"
-
-- name: remove standard zshrc on on Debian
-  file:
-    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
-    state: absent
-  changed_when: false
-  when: ansible_facts['distribution'] == "Debian"
-
-- name: symlink zshrc on Debian
-  file:
-    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
-    src: /usr/local/share/oh-my-zsh/conf/zshrc
-    state: link
-    mode: 0777
-  changed_when: false
-  when: ansible_facts['distribution'] == "Debian"
-
-- name: set zsh as default shell on Debian
-  shell: "chsh -s $(which zsh) {{ user }}"
-  changed_when: false
-  when: ansible_facts['distribution'] == "Debian"
-
 - name: deploy .extra on Ubuntu
   template:
     src: config/extra.in
