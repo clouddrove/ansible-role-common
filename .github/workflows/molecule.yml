@@ -1,0 +1,53 @@
+---
+name: Ansible molecule
+on:
+  pull_request:
+    branches:
+      - master
+    types: [labeled]
+jobs:
+
+  test:
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - ubuntu1804
+          - centos7
+          - amazonlinux2
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run Molecule tests
+        if: ${{ github.event.label.name == 'molecule' }}
+        uses: clouddrove/molecule-action@master
+        with:
+          molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.distro }}
+
+      - name: 'PR Comment'
+        if: ${{ github.event.label.name == 'molecule' }}
+        uses: actions-ecosystem/action-create-comment@v1
+        with:
+          github_token: ${{ secrets.GITHUB }}
+          body: |
+            ${{ env.output }}
+
+      - name: 'Slack Notification'
+        uses: clouddrove/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          fields: repo,author
+          author_name: 'CloudDrove'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ANSIBLE }}
+        if: always()
