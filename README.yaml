@@ -62,7 +62,7 @@ what_includes:
 
 #  description of this project
 description: |-
-  his ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
+  This ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
 # yamllint enable
 # How to use this project
 usage: |-
