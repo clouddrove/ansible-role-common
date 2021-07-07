@@ -32,7 +32,7 @@ badges:
     url: "https://aws.amazon.com/amazon-linux-ami/"
   - name: "Actions"
     image: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
-    url: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
+    url: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml"
 
 # Prerequesties to display
 # yamllint disable
@@ -68,7 +68,7 @@ description: |-
 usage: |-
   ```yaml
     - hosts: localhost
-      remote_user: ubuntu
+      remote_user: root
       become: true
       roles:
         - ansible-role-common
@@ -83,6 +83,11 @@ installation: |-
 
 variables: |-
   ```yaml
-      zsh_theme: steeef
-      state: present
+    zsh_theme: steeef
+    state: present
+    aws: true
+
+    user: false
+    username: ec2-user
+
   ```
