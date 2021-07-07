@@ -61,10 +61,6 @@ jobs:
         uses: pre-commit/action@v2.0.3
         continue-on-error: true
 
-  Notification:
-    name: 'Notification'
-    runs-on: ubuntu-latest
-    steps:
       - name: 'Slack Notification'
         uses: clouddrove/action-slack@v2
         with:
@@ -75,3 +71,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
         if: always()
+
