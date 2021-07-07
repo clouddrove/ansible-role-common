@@ -7,7 +7,6 @@
   apt_repository:
     repo: ppa:git-core/ppa
     state: present
-  when: (ansible_facts['distribution'] == "Ubuntu")
 
 - name: install system packages and utils on ubuntu
   apt:
