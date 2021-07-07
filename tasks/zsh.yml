@@ -1,7 +1,7 @@
 ---
 ## Install Oh-my-zsh
 
-- name: install git and zsh debian
+- name: install git and zsh on Ubuntu
   apt:
     name: ['git', 'zsh']
     state: present
@@ -14,7 +14,7 @@
     name: zsh
     state: present
     update_cache: true
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or (ansible_facts['distribution'] == "Amazon")
+  when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
 
 - name: clone oh-my-zsh repo
   git:
@@ -45,108 +45,107 @@
     dest: /usr/local/share/oh-my-zsh/conf/zshrc
     mode: 0777
 
-- name: deploy .extra on centos
+- name: deploy .extra on Centos
   template:
     src: config/extra.in
-    dest: "/home/{{ centos_user }}/.extra"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
-- name: deploy .bash_profile on centos
+- name: deploy .bash_profile on Centos
   template:
     src: config/bash_profile.in
-    dest: "/home/{{ centos_user }}/.bash_profile"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
-- name: remove standard zshrc on centos
+- name: remove standard zshrc on Centos
   file:
-    path: "/home/{{ centos_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
-- name: symlink zshrc on centos
+- name: symlink zshrc on Centos
   file:
-    path: "/home/{{ centos_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
     mode: 0777
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
-- name: set zsh as default shell on centos
-  shell: "chsh -s $(which zsh) {{ centos_user }}"
+- name: set zsh as default shell on Centos
+  shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS")
 
-- name: deploy .extra on amazonlinux
+- name: deploy .extra on AmazonLinux
   template:
     src: config/extra.in
-    dest: "/home/{{ amazon_user }}/.extra"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: deploy .bash_profile on amazonlinux
+- name: deploy .bash_profile on AmazonLinux
   template:
     src: config/bash_profile.in
-    dest: "/home/{{ amazon_user }}/.bash_profile"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: remove standard zshrc on amazonlinux
+- name: remove standard zshrc on AmazonLinux
   file:
-    path: "/home/{{ amazon_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: symlink zshrc on amazonlinux
+- name: symlink zshrc on AmazonLinux
   file:
-    path: "/home/{{ amazon_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
     mode: 0777
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: set zsh as default shell on amazonlinux
-  shell: "chsh -s $(which zsh) {{ amazon_user }}"
+- name: set zsh as default shell on AmazonLinux
+  shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-
-- name: deploy .extra
+- name: deploy .extra on Ubuntu
   template:
     src: config/extra.in
-    dest: "/home/{{ ubuntu_user }}/.extra"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: deploy .bash_profile
+- name: deploy .bash_profile on Ubuntu
   template:
     src: config/bash_profile.in
-    dest: "/home/{{ ubuntu_user }}/.bash_profile"
+    dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: remove standard zshrc
+- name: remove standard zshrc on Ubuntu
   file:
-    path: "/home/{{ ubuntu_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: symlink zshrc
+- name: symlink zshrc on Ubuntu
   file:
-    path: "/home/{{ ubuntu_user }}/.zshrc"
+    path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
     mode: 0777
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: set zsh as default shell
-  shell: "chsh -s $(which zsh) {{ ubuntu_user }}"
+- name: set zsh as default shell on Ubuntu
+  shell: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"

@@ -1,13 +1,18 @@
 ---
-- import_tasks: users.yml
-- import_tasks: install.yml
-- import_tasks: aws.yml
-  when: aws
+
+- import_tasks: apt-pkg.yml
+  when: (ansible_facts['distribution'] == "Ubuntu")
+
+- import_tasks: yum-pkg.yml
+  when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
+
 - import_tasks: zsh.yml
   vars:
-    user: ubuntu
+    user: "{{ username }}"
+  when: user
+
 
 - import_tasks: zsh.yml
   vars:
     user: root
-    home_dir: '/'
+    home_dir: "/"

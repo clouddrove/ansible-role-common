@@ -1,0 +1,60 @@
+---
+
+- name: install epel release on centos
+  yum:
+    name: epel-release
+  when: (ansible_facts['distribution'] == "CentOS")
+
+- name: install epel-release on amazonlinux
+  command: amazon-linux-extras install epel -y
+  when: (ansible_facts['distribution'] == "Amazon")
+
+- name: install system packages and utils on centos
+  yum:
+    name:
+      [
+        "which",
+        "git",
+        "telnet",
+        "git-core",
+        "wget",
+        "python3-pip",
+        "zip",
+        "vim",
+        "vim-common",
+        "curl",
+        "util-linux-user",
+        # "ntp",
+        "openssl",
+        "rsyslog",
+        "htop",
+        # "perl-JSON-XS",
+        "figlet",
+      ]
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+
+- name: install util-linux-use on centos
+  yum:
+    name: yum-utils
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+  when: (ansible_facts['distribution'] == "CentOS")
+
+- name: install util-linux-user on amazon
+  yum:
+    name: util-linux-user
+    state: "{{ state }}"
+    update_cache: true
+  changed_when: false
+  when: (ansible_facts['distribution'] == "Amazon")
+
+- name: install python packages
+  yum:
+    name:
+      - awscli
+      - iotop
+    state: "{{ state }}"
+  when: aws
