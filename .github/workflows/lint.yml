@@ -41,7 +41,7 @@ jobs:
         run: pip3 install ansible-lint
 
       - name: Run ansible-lint.
-        run: ansible-lint .
+        run: ansible-lint
 
   pre-commit:
     name: 'Pre-Commit'
