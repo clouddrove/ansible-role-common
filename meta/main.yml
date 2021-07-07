@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: Anmol Nagpal
-  description: This ansible role install common packages for Debian.
+  description: This ansible role install common packages On  Debian.
   company: "CloudDrove Inc."
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
@@ -13,9 +13,6 @@ galaxy_info:
         - 6
         - 7
         - 8
-    - name: Debian
-      versions:
-        - all
     - name: Ubuntu
       versions:
         - trusty
