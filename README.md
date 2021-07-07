@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center" style="font-size: 1.2rem;"> 
-    This ansible role installs common packages for Debian.
+    This ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
      </p>
 
 <p align="center">
@@ -28,7 +28,7 @@
 <a href="https://aws.amazon.com/amazon-linux-ami/">
   <img src="https://img.shields.io/badge/Amazone_linux-2-yellow?style=flat&logo=linux" alt="Distribution">
 </a>
-<a href="https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg">
+<a href="https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml">
   <img src="https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg" alt="Actions">
 </a>
 
@@ -61,7 +61,7 @@ Smaller roles are created for each environment elements; which also include task
 
 This module has a few dependencies: 
 
-- [Ansible2.8](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- [Ansible2.9](https://www.ansible.com)
 - [Python](https://www.python.org/downloads)
 
 
@@ -100,7 +100,7 @@ Following things includes in this role:
 
 ```yaml
   - hosts: localhost
-    remote_user: ubuntu
+    remote_user: root
     become: true
     roles:
       - ansible-role-common
@@ -110,15 +110,20 @@ Following things includes in this role:
 ## Variables
 
 ```yaml
-    zsh_theme: steeef
-    state: present
+  zsh_theme: steeef
+  state: present
+  aws: true
+
+  user: false
+  username: ec2-user
+
 ```
 
 
 ## Installation
 
 ```console
-  $ ansible-galaxy install clouddrove.ansible_role_docker_php
+  $ ansible-galaxy install clouddrove.ansible-role-common
 ```
 
 
