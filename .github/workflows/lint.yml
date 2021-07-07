@@ -63,10 +63,6 @@ jobs:
 
   Notification:
     name: 'Notification'
-    needs:
-      - yamllint
-      - ansible-lint
-      - pre-commit
     runs-on: ubuntu-latest
     steps:
       - name: 'Slack Notification'
