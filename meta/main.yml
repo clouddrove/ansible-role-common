@@ -2,6 +2,7 @@
 dependencies: []
 
 galaxy_info:
+  role-name: ansible-role-common
   author: Anmol Nagpal
   description: This ansible role install common packages On  Debian.
   company: "CloudDrove Inc."
