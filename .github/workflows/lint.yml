@@ -25,6 +25,7 @@ jobs:
 
       - name: Run yamllint.
         run: yamllint .
+
   ansible-lint:
     name: ansible-lint
     runs-on: ubuntu-latest
