@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         node:
-          - ubuntu1804
-          - centos7
+          - ubuntu2004
+          - centos8
           - amazonlinux2
 
     steps:
