@@ -20,8 +20,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
+      - name: Install yamllist
+        run: pip3 install yamllint 
 
       - name: Run yamllint.
         run: yamllint .
@@ -30,7 +30,7 @@ jobs:
     name: ansible-lint
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the codebase.
+      - name: Checkout the codebase.
         uses: actions/checkout@v2
 
       - name: Set up Python 3.7.
@@ -38,7 +38,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
+      - name: Install ansible and other packages
         run: pip3 install ansible ansible-lint
 
       - name: Run ansible-lint.
@@ -54,7 +54,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v2.3.4
 
-      - name: Install test dependencies.
+      - name: Install ansible-lint
         run: pip3 install ansible-lint
 
       - name: 'Pre-Commit 🔎'
@@ -66,8 +66,8 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,author
-          author_name: 'CloudDrove'
+          author_name: 'CloudDrove Inc.'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ANSIBLE }}
         if: always()
