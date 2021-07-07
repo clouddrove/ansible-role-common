@@ -32,13 +32,13 @@ badges:
     url: "https://aws.amazon.com/amazon-linux-ami/"
   - name: "Actions"
     image: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
-    url: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
+    url: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml"
 
 # Prerequesties to display
 # yamllint disable
 prerequesties:
-  - name: "Ansible2.8"
-    url: "https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html"
+  - name: "Ansible2.9"
+    url: "https://www.ansible.com"
   - name: "Python"
     url: "https://www.python.org/downloads"
 
@@ -62,13 +62,13 @@ what_includes:
 
 #  description of this project
 description: |-
-  This ansible role installs common packages for Debian.
+  This ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
 # yamllint enable
 # How to use this project
 usage: |-
   ```yaml
     - hosts: localhost
-      remote_user: ubuntu
+      remote_user: root
       become: true
       roles:
         - ansible-role-common
@@ -77,12 +77,17 @@ usage: |-
 # How to install project
 installation: |-
   ```console
-    $ ansible-galaxy install clouddrove.ansible_role_docker_php
+    $ ansible-galaxy install clouddrove.ansible-role-common
   ```
 
 
 variables: |-
   ```yaml
-      zsh_theme: steeef
-      state: present
+    zsh_theme: steeef
+    state: present
+    aws: true
+
+    user: false
+    username: ec2-user
+
   ```
