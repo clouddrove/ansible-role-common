@@ -38,7 +38,7 @@ badges:
 # yamllint disable
 prerequesties:
   - name: "Ansible2.9"
-    url: "https://img.shields.io/badge/Ansible-2.9-green?style=flat&logo=ansible"
+    url: "https://www.ansible.com"
   - name: "Python"
     url: "https://www.python.org/downloads"
 
