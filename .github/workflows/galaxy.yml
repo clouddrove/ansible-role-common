@@ -1,7 +1,7 @@
 ---
 name: Release to Ansible Galaxy
 
-on:
+'on':
   push:
     tags:
       - '*'
