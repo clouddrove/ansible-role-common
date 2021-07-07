@@ -39,7 +39,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install asible ansible-lint
+        run: pip3 install ansible ansible-lint
 
       - name: Run ansible-lint.
         run: ansible-lint
