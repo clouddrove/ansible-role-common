@@ -1,5 +1,5 @@
 ---
-# Default file for ansible-role-commomn
+# Default file for ansible-role-common
 
 zsh_theme: steeef
 state: present

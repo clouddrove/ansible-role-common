@@ -16,17 +16,23 @@ github_repo: clouddrove/ansible-role-common
 # Badges to display
 badges:
   - name: "Ansible"
-    image: "https://img.shields.io/badge/Ansible-2.8-green?style=flat&logo=ansible"
+    image: "https://img.shields.io/badge/Ansible-2.9-green?style=flat&logo=ansible"
     url: "https://www.ansible.com"
   - name: "Licence"
     image: "https://img.shields.io/badge/License-MIT-blue.svg"
     url: "LICENSE.md"
   - name: "Distribution"
-    image: "https://img.shields.io/badge/ubuntu-16.x-orange?style=flat&logo=ubuntu"
+    image: "https://img.shields.io/badge/ubuntu-20.x-orange?style=flat&logo=ubuntu"
     url: "https://ubuntu.com/"
   - name: "Distribution"
-    image: "https://img.shields.io/badge/ubuntu-18.x-orange?style=flat&logo=ubuntu"
-    url: "https://ubuntu.com/"
+    image: "https://img.shields.io/badge/CentOS-8-green?style=flat&logo=centos"
+    url: "https://www.centos.org/"
+  - name: "Distribution"
+    image: "https://img.shields.io/badge/Amazone_linux-2-yellow?style=flat&logo=linux"
+    url: "https://aws.amazon.com/amazon-linux-ami/"
+  - name: "Actions"
+    image: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
+    url: "https://github.com/clouddrove/ansible-role-common/actions/workflows/lint.yml/badge.svg"
 
 # Prerequesties to display
 # yamllint disable
