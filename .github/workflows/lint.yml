@@ -21,7 +21,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install yamllist
-        run: pip3 install yamllint 
+        run: pip3 install yamllint
 
       - name: Run yamllint.
         run: yamllint .
