@@ -9,7 +9,7 @@
 - import_tasks: zsh.yml
   vars:
     user: "{{ username }}"
-  when: user
+    when: user
 
 
 - import_tasks: zsh.yml

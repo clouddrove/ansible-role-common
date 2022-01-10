@@ -6,4 +6,4 @@ state: present
 aws: true
 
 user: false
-username: ec2-user
+username: ubuntu

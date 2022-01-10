@@ -1,8 +1,8 @@
-# {{ ansible_managed }}
+# Ansible managed: This file. is managed by CloudDrove Inc. Please do not change this file manually, else next deployment will overright it.
 
 # Path to your oh-my-zsh configuration.
 ZSH=/usr/local/share/oh-my-zsh
-
+ZSH_DISABLE_COMPFIX=true
 # For Solarized
 export TERM="xterm-256color"
 
