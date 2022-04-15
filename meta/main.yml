@@ -5,6 +5,7 @@ galaxy_info:
   author: Anmol Nagpal
   description: This ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
   company: "CloudDrove Inc."
+  role_name: ansible_role_common
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:
