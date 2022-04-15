@@ -6,4 +6,4 @@ state: present
 aws: true
 
 user: false
-username: drax
+username: ubuntu
