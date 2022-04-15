@@ -45,7 +45,7 @@ SAVEHIST=1000 # saved history
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-plugins=(git cp git-extras gnu-utils history pip python ruby screen svn npm node common-aliases cp copyfile copydir github grunt sudo ubuntu history-substring-search)
+plugins=(git cp git-extras gnu-utils history pip python ruby screen svn npm node common-aliases cp copyfile copypath github grunt sudo ubuntu history-substring-search)
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
