@@ -27,7 +27,7 @@
       dir: oh-my-zsh
     - name: https://github.com/zsh-users/zsh-syntax-highlighting
       dir: zsh-syntax-highlighting
-    - name: git://github.com/zsh-users/zsh-autosuggestions
+    - name: https://github.com/zsh-users/zsh-autosuggestions
       dir: zsh-autosuggestions
 
 - name: create conf folder in home directory
