@@ -1,6 +1,6 @@
-# {{ ansible_managed }}
+# Ansible managed
 
-TEXT="{{Env | default ('')}}  {{hostvars[inventory_hostname].EcType | default ('')}}  {{hostvars[inventory_hostname].Nr | default ('')}}"
+TEXT="prod  bastion  1"
 
 upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
 secs=$((${upSeconds}%60))
