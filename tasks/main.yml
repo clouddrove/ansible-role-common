@@ -1,18 +1,21 @@
 ---
 
-- import_tasks: apt-pkg.yml
+- name: Import APT package tasks
+  ansible.builtin.import_tasks: apt-pkg.yml
   when: (ansible_facts['distribution'] == "Ubuntu")
 
-- import_tasks: yum-pkg.yml
+- name: Import YUM package tasks
+  ansible.builtin.import_tasks: yum-pkg.yml
   when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
 
-- import_tasks: zsh.yml
+- name: Import ZSH tasks for user
+  ansible.builtin.import_tasks: zsh.yml
   vars:
     user: "{{ username }}"
-    when: user
+  when: user is defined
 
-
-- import_tasks: zsh.yml
+- name: Import ZSH tasks for root
+  ansible.builtin.import_tasks: zsh.yml
   vars:
     user: root
     home_dir: "/"

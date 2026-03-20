@@ -1,37 +1,37 @@
 ---
 ## Install Oh-my-zsh
 
-- name: install git and zsh on Ubuntu
-  apt:
+- name: Install git and zsh on Ubuntu
+  ansible.builtin.apt:
     name: ['git', 'zsh']
     state: present
     update_cache: true
     cache_valid_time: 5400
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: install git zsh cento or amazon
-  yum:
-    name: zsh
+- name: Install git zsh cento or amazon
+  ansible.builtin.yum:
+    name: Zsh
     state: present
     update_cache: true
   when: (ansible_facts['distribution'] == "CentOS") or (ansible_facts['distribution'] == "Amazon")
 
-- name: clone oh-my-zsh repo
-  git:
+- name: Clone oh-my-zsh repo
+  ansible.builtin.git:
     depth: 1
     repo: "{{ item.name }}"
     version: master
     dest: /usr/local/share/{{ item.dir }}
   with_items:
-    - name: https://github.com/robbyrussell/oh-my-zsh
+    - name: Https://github.com/robbyrussell/oh-my-zsh
       dir: oh-my-zsh
-    - name: https://github.com/zsh-users/zsh-syntax-highlighting
+    - name: Https://github.com/zsh-users/zsh-syntax-highlighting
       dir: zsh-syntax-highlighting
-    - name: https://github.com/zsh-users/zsh-autosuggestions
+    - name: Https://github.com/zsh-users/zsh-autosuggestions
       dir: zsh-autosuggestions
 
-- name: create conf folder in home directory
-  file:
+- name: Create conf folder in home directory
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0777
@@ -39,35 +39,35 @@
     - "/usr/local/share/oh-my-zsh/conf/"
     - "/usr/local/share/oh-my-zsh/cache/"
 
-- name: deploy .zshrc
-  template:
+- name: Deploy .zshrc
+  ansible.builtin.template:
     src: config/zshrc.in
     dest: /usr/local/share/oh-my-zsh/conf/zshrc
     mode: 0777
 
-- name: deploy .extra on Centos
-  template:
+- name: Deploy .extra on Centos
+  ansible.builtin.template:
     src: config/extra.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: deploy .bash_profile on Centos
-  template:
+- name: Deploy .bash_profile on Centos
+  ansible.builtin.template:
     src: config/bash_profile.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: remove standard zshrc on Centos
-  file:
+- name: Remove standard zshrc on Centos
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: symlink zshrc on Centos
-  file:
+- name: Symlink zshrc on Centos
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
@@ -75,34 +75,35 @@
   changed_when: false
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: set zsh as default shell on Centos
-  shell: "chsh -s $(which zsh) {{ user }}"
+- name: Set zsh as default shell on Centos
+  ansible.builtin.shell:
+    cmd: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: deploy .extra on AmazonLinux
-  template:
+- name: Deploy .extra on AmazonLinux
+  ansible.builtin.template:
     src: config/extra.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: deploy .bash_profile on AmazonLinux
-  template:
+- name: Deploy .bash_profile on AmazonLinux
+  ansible.builtin.template:
     src: config/bash_profile.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: remove standard zshrc on AmazonLinux
-  file:
+- name: Remove standard zshrc on AmazonLinux
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: symlink zshrc on AmazonLinux
-  file:
+- name: Symlink zshrc on AmazonLinux
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
@@ -110,34 +111,35 @@
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: set zsh as default shell on AmazonLinux
-  shell: "chsh -s $(which zsh) {{ user }}"
+- name: Set zsh as default shell on AmazonLinux
+  ansible.builtin.shell:
+    cmd: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: deploy .extra on Ubuntu
-  template:
+- name: Deploy .extra on Ubuntu
+  ansible.builtin.template:
     src: config/extra.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.extra"
     mode: 0777
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: deploy .bash_profile on Ubuntu
-  template:
+- name: Deploy .bash_profile on Ubuntu
+  ansible.builtin.template:
     src: config/bash_profile.in
     dest: "{{ home_dir | default('/home/') }}{{ user }}/.bash_profile"
     mode: 0777
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: remove standard zshrc on Ubuntu
-  file:
+- name: Remove standard zshrc on Ubuntu
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     state: absent
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: symlink zshrc on Ubuntu
-  file:
+- name: Symlink zshrc on Ubuntu
+  ansible.builtin.file:
     path: "{{ home_dir | default('/home/') }}{{ user }}/.zshrc"
     src: /usr/local/share/oh-my-zsh/conf/zshrc
     state: link
@@ -145,7 +147,8 @@
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: set zsh as default shell on Ubuntu
-  shell: "chsh -s $(which zsh) {{ user }}"
+- name: Set zsh as default shell on Ubuntu
+  ansible.builtin.shell:
+    cmd: "chsh -s $(which zsh) {{ user }}"
   changed_when: false
   when: ansible_facts['distribution'] == "Ubuntu"

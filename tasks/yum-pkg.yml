@@ -1,16 +1,17 @@
 ---
 
-- name: install epel release on centos
-  yum:
-    name: epel-release
+- name: Install epel release on centos
+  ansible.builtin.yum:
+    name: Epel-release
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: install epel-release on amazonlinux
-  command: amazon-linux-extras install epel -y
+- name: Install epel-release on amazonlinux
+  ansible.builtin.command:
+    cmd: amazon-linux-extras install epel -y
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: install system packages and utils on centos
-  yum:
+- name: Install system packages and utils on centos
+  ansible.builtin.yum:
     name:
       [
         "which",
@@ -35,24 +36,24 @@
     update_cache: true
   changed_when: false
 
-- name: install util-linux-use on centos
-  yum:
-    name: yum-utils
+- name: Install util-linux-use on centos
+  ansible.builtin.yum:
+    name: Yum-utils
     state: "{{ state }}"
     update_cache: true
   changed_when: false
   when: (ansible_facts['distribution'] == "CentOS")
 
-- name: install util-linux-user on amazon
-  yum:
-    name: util-linux-user
+- name: Install util-linux-user on amazon
+  ansible.builtin.yum:
+    name: Util-linux-user
     state: "{{ state }}"
     update_cache: true
   changed_when: false
   when: (ansible_facts['distribution'] == "Amazon")
 
-- name: install python packages
-  yum:
+- name: Install python packages
+  ansible.builtin.yum:
     name:
       - awscli
       - iotop

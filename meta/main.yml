@@ -2,36 +2,30 @@
 dependencies: []
 
 galaxy_info:
+  namespace: clouddrove
+  role_name: common
   author: Anmol Nagpal
   description: This ansible role install common packages On Ubuntu, CentOS Amazon-Linux.
   company: "CloudDrove Inc."
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.4
+  min_ansible_version: "2.16"
   platforms:
-    - name: EL
-      versions:
-        - 6
-        - 7
-        - 8
     - name: Ubuntu
       versions:
-        - trusty
-        - xenial
         - focal
-    - name: Archlinux
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+    - name: Amazon
       versions:
         - all
-    - name: FreeBSD
-      versions:
-        - 10.3
-        - 10.2
-        - 10.1
-        - 10.0
-        - 9.3
-    - name: OpenBSD
-      versions:
-        - 5.9
-        - 6.0
   galaxy_tags:
     - server
     - common

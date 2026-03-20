@@ -1,15 +1,16 @@
 ---
-- name: dpkg configure on ubuntu
-  command: dpkg --configure -a
+- name: Dpkg configure on ubuntu
+  ansible.builtin.command:
+    cmd: dpkg --configure -a
   changed_when: false
 
-- name: add git stable apt_repository on Ubuntu
-  apt_repository:
+- name: Add git stable apt_repository on Ubuntu
+  ansible.builtin.apt_repository:
     repo: ppa:git-core/ppa
     state: present
 
-- name: install system packages and utils on ubuntu
-  apt:
+- name: Install system packages and utils on ubuntu
+  ansible.builtin.apt:
     pkg:
       [
         "ntp",
@@ -34,8 +35,8 @@
     cache_valid_time: 5400
   changed_when: false
 
-- name: install python packages
-  apt:
+- name: Install python packages
+  ansible.builtin.apt:
     name:
       - awscli
       - iotop
